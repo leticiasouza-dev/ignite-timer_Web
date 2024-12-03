@@ -2,7 +2,6 @@ import { defaultTheme } from './../styles/themes/default';
 //arquivo de definição de tipagem de estilos
 
 import "styled-components";
-import { defaultTheme } from "../styles/themes/default";
 
 type ThemeType = typeof defaultTheme
 
