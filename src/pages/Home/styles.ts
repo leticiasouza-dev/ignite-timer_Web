@@ -54,6 +54,10 @@ const BaseInput = styled.input`
 
 export const TaskInput = styled(BaseInput)` // utilizando o meu componentes estilizado base
     flex: 1;
+
+    &::-webkit-calendar-picker-indicator{ // retirando a flecha do datalist (de sugestões)
+        display: none !important;
+    }
 `
 
 export const MinutesAmountInput = styled(BaseInput)`
