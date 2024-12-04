@@ -12,18 +12,20 @@ const newCycleFormValidationShema = zod.object({
     minutesAmount: zod.number().min(5).max(60)
 })
 
-interface newCycleFormData{
-    task: string,
-    minutesAmount: number
-}
+type newCycleFormData = zod.infer< typeof newCycleFormValidationShema>
 
 export function Home(){
-    const {register, handleSubmit, watch} = useForm({
+    const {register, handleSubmit, watch, reset} = useForm <newCycleFormData>({
         resolver: zodResolver(newCycleFormValidationShema),
+        defaultValues: {
+            task: '',
+            minutesAmount: 0,
+        }
     });
 
     function handleCreateNewCycle(data: newCycleFormData){
-
+        console.log(data)
+        reset()
     }
 
     const task = watch('task') // observando meu campo de task
@@ -54,7 +56,7 @@ export function Home(){
                         step={5} // definindo que a cada clique vai ser de 5 em 5
                         min={5} // definindo o valor minimo
                         max={60} // definindo o valor máximo
-                        {...register('minutesAmout', {valueAsNumber: true})}  // definindo que o valor digitado é um numero(number)
+                        {...register('minutesAmount', {valueAsNumber: true})}  // definindo que o valor digitado é um numero(number)
                     />
 
                     <span>minutos.</span>
