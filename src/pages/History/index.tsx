@@ -1,4 +1,4 @@
-import { HistoryContainer, HistoryList } from "./styles";
+import { HistoryContainer, HistoryList, Status } from "./styles";
 
 export function History(){
     return(
@@ -20,35 +20,45 @@ export function History(){
                             <td>Tarefa</td>
                             <td>20 minutos</td>
                             <td>ha 2 meses</td>
-                            <td>Em andamento</td>
+                            <td>
+                                <Status statusColor="green">Concluido</Status>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Tarefa</td>
                             <td>20 minutos</td>
                             <td>ha 2 meses</td>
-                            <td>Em andamento</td>
+                            <td>
+                                <Status statusColor="green">Concluido</Status>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Tarefa</td>
                             <td>20 minutos</td>
                             <td>ha 2 meses</td>
-                            <td>Em andamento</td>
+                            <td>
+                                <Status statusColor="green">Concluido</Status>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Tarefa</td>
                             <td>20 minutos</td>
                             <td>ha 2 meses</td>
-                            <td>Em andamento</td>
+                            <td>
+                                <Status statusColor="green">Concluido</Status>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Tarefa</td>
                             <td>20 minutos</td>
                             <td>ha 2 meses</td>
-                            <td>Em andamento</td>
+                            <td>
+                                <Status statusColor="green">Concluido</Status>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
