@@ -6,6 +6,7 @@ import {zodResolver} from '@hookform/resolvers/zod' // biblioteca para validaç�
 import * as zod from 'zod'
 
 import { HomeContainer, FormContainer,  CountDownContainer, Separator, StartCountdownButton, TaskInput, MinutesAmountInput } from "./styles";
+import { useState } from "react";
 
 const newCycleFormValidationShema = zod.object({
     task: zod.string().min(1, 'informe a tarefa'),
@@ -14,7 +15,16 @@ const newCycleFormValidationShema = zod.object({
 
 type newCycleFormData = zod.infer< typeof newCycleFormValidationShema>
 
+interface Cycle{
+    id: string,
+    task: string,
+    minutesAmount: number
+}
+
 export function Home(){
+    const [cycles, setCycles] = useState<Cycle[]>([]) // defini o tipo do meu estado e que ele será um array 
+    const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+
     const {register, handleSubmit, watch, reset} = useForm <newCycleFormData>({
         resolver: zodResolver(newCycleFormValidationShema),
         defaultValues: {
@@ -24,9 +34,21 @@ export function Home(){
     });
 
     function handleCreateNewCycle(data: newCycleFormData){
-        console.log(data)
+        const id = String( new Date().getTime() )
+
+        const newCycle: Cycle = {
+            id,// pegando a data atual e transformando em milisegundo
+            task: data.task,
+            minutesAmount: data.minutesAmount,
+        }
+
+        setCycles((state) => [...state, newCycle ])
+        setActiveCycleId(id)
+
         reset()
     }
+
+    const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
 
     const task = watch('task') // observando meu campo de task
     const isSubmitDisabled = !task
